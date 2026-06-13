@@ -1,0 +1,26 @@
+## DocumentSearch API
+
+@DocumentSearch.Api_HostAddress = http://localhost:5089
+
+### Get folder tree
+GET {{DocumentSearch.Api_HostAddress}}/api/folders
+
+### Search documents
+GET {{DocumentSearch.Api_HostAddress}}/api/search?q=contract&includeSubfolders=true
+
+### Upload document
+POST {{DocumentSearch.Api_HostAddress}}/api/documents/upload
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="folderId"
+
+{{folderId}}
+--boundary
+Content-Disposition: form-data; name="file"; filename="sample.txt"
+
+Sample document text for search testing.
+--boundary--
+
+### Backfill from directory
+POST {{DocumentSearch.Api_HostAddress}}/api/admin/backfill?sourceDirectory=C:\Temp\Docs

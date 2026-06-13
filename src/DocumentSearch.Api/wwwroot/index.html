@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document Search</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1>Document Search</h1>
+        <button id="btnNewFolder" class="btn btn-sm" title="New folder">+ Folder</button>
+      </div>
+      <div class="folder-tree" id="folderTree"></div>
+      <div class="sidebar-footer">
+        <div class="bulk-panel">
+          <h3>Bulk index (millions of files)</h3>
+          <p class="hint">Put files in your Documents folder, then scan — no browser upload needed.</p>
+          <input type="text" id="bulkPath" placeholder="Folder path to scan…" />
+          <button id="btnBulkStart" class="btn btn-primary btn-block">Start bulk index</button>
+          <div id="bulkProgress" class="bulk-progress hidden">
+            <div class="progress-bar"><div id="bulkProgressFill" class="progress-fill"></div></div>
+            <div id="bulkProgressText" class="progress-text"></div>
+          </div>
+        </div>
+        <details class="upload-details">
+          <summary>Upload files (browser)</summary>
+          <p class="hint">Any number of files — sent in parallel batches. For 500+ files, bulk index is faster.</p>
+          <label class="upload-zone" id="uploadZone">
+            <input type="file" id="fileInput" multiple hidden />
+            <span>Drop files here or click to browse</span>
+          </label>
+          <div id="uploadProgress" class="bulk-progress hidden">
+            <div class="progress-bar"><div id="uploadProgressFill" class="progress-fill"></div></div>
+            <div id="uploadProgressText" class="progress-text"></div>
+          </div>
+        </details>
+        <div id="docStats" class="doc-stats"></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="search-bar">
+        <div class="search-input-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" id="searchInput" placeholder="Search documents…" autofocus />
+        </div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="includeSubfolders" checked />
+          Include subfolders
+        </label>
+        <button id="btnSearch" class="btn btn-primary">Search</button>
+      </header>
+
+      <div class="context-bar" id="contextBar">
+        <span id="selectedFolderLabel">All folders</span>
+      </div>
+
+      <section class="results" id="results">
+        <div class="empty-state" id="emptyState">
+          <p>Enter a search term or upload documents to get started.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="folderDialog">
+    <form method="dialog" id="folderForm">
+      <h2>New folder</h2>
+      <input type="text" id="folderName" placeholder="Folder name" required />
+      <div class="dialog-actions">
+        <button type="button" class="btn" id="cancelFolder">Cancel</button>
+        <button type="submit" class="btn btn-primary">Create</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+bin/
+obj/
+.vs/
+Documents/
+DocumentStore/
+tessdata/
+tools/sample-pdfs/
+*.user
+appsettings.Development.json
+appsettings.local.json
+.env
